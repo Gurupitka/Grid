@@ -60,7 +60,6 @@ function GridStatusMana:OnStatusEnable(status)
 
 	self:RegisterMessage("Grid_UnitJoined")
 
-	self:RegisterEvent("UNIT_POWER", "UpdateUnit")
 	self:RegisterEvent("UNIT_MAXPOWER", "UpdateUnit")
 	self:RegisterEvent("UNIT_DISPLAYPOWER", "UpdateUnit")
 
@@ -72,7 +71,6 @@ function GridStatusMana:OnStatusDisable(status)
 
 	self:UnregisterMessage("Grid_UnitJoined")
 
-	self:UnregisterEvent("UNIT_POWER")
 	self:UnregisterEvent("UNIT_MAXPOWER")
 	self:UnregisterEvent("UNIT_DISPLAYPOWER")
 

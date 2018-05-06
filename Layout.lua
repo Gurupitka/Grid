@@ -317,7 +317,7 @@ GridLayout.options = {
 				GridLayout:ReloadLayout()
 			end,
 		},
---@debug@
+--[===[@debug@
 		splitGroups = {
 			name = COMPACT_UNIT_FRAME_PROFILE_KEEPGROUPSTOGETHER, -- L["Keep Groups Together"]
 			desc = L["Layouts added by plugins might not support this option."], -- TODO
@@ -329,7 +329,7 @@ GridLayout.options = {
 				GridLayout:GetModule("GridLayoutManager"):UpdateLayouts()
 			end,
 		},
---@end-debug@
+--@end-debug@]===]
 		showPets = {
 			name = COMPACT_UNIT_FRAME_PROFILE_DISPLAYPETS, -- L["Show Pets"]
 			desc = L["Layouts added by plugins might not support this option."], -- TODO
@@ -618,7 +618,6 @@ function GridLayout:PostEnable()
 
 	self:RegisterBucketMessage("Grid_UpdateLayoutSize", 0.2, "PartyMembersChanged")
 	self:RegisterMessage("Grid_RosterUpdated", "PartyMembersChanged")
-	self:RegisterEvent("PARTY_MEMBERS_CHANGED", "PartyMembersChanged")
 	self:RegisterEvent("GROUP_ROSTER_UPDATE", "PartyMembersChanged")
 	self:RegisterEvent("PLAYER_ENTERING_WORLD", "ZoneCheck")
 

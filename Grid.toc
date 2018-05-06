@@ -1,5 +1,5 @@
-## Interface: 70100
-## Version: @project-version@
+## Interface: 80000
+## Version: 8.0.0.1
 
 ## Title: Grid
 ## Notes: A compact grid of party/raid unit frames.
@@ -89,7 +89,8 @@ Statuses\Role.lua
 Statuses\Stagger.lua
 Statuses\Target.lua
 Statuses\Vehicle.lua
+Statuses\VoiceComm.lua
 
 #@debug@
-Statuses\new\GridAura.lua
+# Statuses\new\GridAura.lua
 #@end-debug@

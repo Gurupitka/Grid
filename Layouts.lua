@@ -64,9 +64,9 @@ local Layouts = {
 		},
 	}
 }
---@debug@
+--[===[@debug@
 GRIDLAYOUTS = Layouts
---@end-debug@
+--@end-debug@]===]
 
 --------------------------------------------------------------------------------
 
@@ -243,17 +243,17 @@ function Manager:UpdateLayouts(event)
 	lastShowPets = showPets
 
 	-- Update class and role layouts
---@debug@
+--[===[@debug@
 	if splitGroups then
 		UpdateSplitGroups(Layouts.ByClass,  numGroups, showPets)
 		UpdateSplitGroups(Layouts.ByRole,   numGroups, showPets)
 	else
---@end-debug@
+--@end-debug@]===]
 		UpdateMergedGroups(Layouts.ByClass, numGroups, showPets)
 		UpdateMergedGroups(Layouts.ByRole,  numGroups, showPets)
---@debug@
+--[===[@debug@
 	end
---@end-debug@
+--@end-debug@]===]
 
 	-- By group should always be split group
 	UpdateSplitGroups(Layouts.ByGroup, usedGroups, showPets)

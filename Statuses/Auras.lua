@@ -1573,20 +1573,31 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 
 	if UnitIsVisible(unit) then
 		-- scan for buffs
+		local buffDictionaryToIndex =  {}
+		for i =1, 40 do
+			local buffName = UnitAura(unit, i, "HELPFUL")
+			if buffName then
+				buffDictionaryToIndex[buffName] = i
+			end
+		end
 		for buff_name in pairs(buff_names) do
-			local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buff_name, nil, "HELPFUL")
-			if name then
-				buff_names_seen[name] = true
-				self:UnitGainedBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
+			if buffDictionaryToIndex[buff_name] ~= nil then
+				local name, icon, count, debuffType, duration, expirationTime, caster, isStealable, shouldConsolidate, spellId = UnitAura(unit, buffDictionaryToIndex[buff_name], "HELPFUL")
+				if name then
+					buff_names_seen[name] = true
+					self:UnitGainedBuff(guid, class, name, nil, icon, count, debuffType, duration, expirationTime, caster, isStealable)
+				end
 			end
 		end
 
 		-- scan for buffs cast by the player
 		for buff_name in pairs(player_buff_names) do
-			local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buff_name, nil, "HELPFUL|PLAYER")
-			if name then
-				player_buff_names_seen[name] = true
-				self:UnitGainedPlayerBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
+		  if buffDictionaryToIndex[buff_name] ~= nil then
+				local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buffDictionaryToIndex[buff_name], "HELPFUL|PLAYER")
+				if name then
+					player_buff_names_seen[name] = true
+					self:UnitGainedPlayerBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
+				end
 			end
 		end
 

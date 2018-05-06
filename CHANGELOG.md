@@ -1,3 +1,7 @@
+### Version 8.0.0.1
+
+- Fixed some issues with the BFA API changes ([ticket #887](https://wow.curseforge.com/projects/grid/issues/887))
+
 ### Version 7.1.0.1
 
 - Fixed an error with combat resurrections ([ticket #860](https://wow.curseforge.com/addons/grid/tickets/860))
