@@ -1593,7 +1593,7 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 		-- scan for buffs cast by the player
 		for buff_name in pairs(player_buff_names) do
 		  if buffDictionaryToIndex[buff_name] ~= nil then
-				local name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buffDictionaryToIndex[buff_name], "HELPFUL|PLAYER")
+				local name, icon, count, debuffType, duration, expirationTime, caster, isStealable = UnitAura(unit, buffDictionaryToIndex[buff_name], "HELPFUL|PLAYER")
 				if name then
 					player_buff_names_seen[name] = true
 					self:UnitGainedPlayerBuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, caster, isStealable)
