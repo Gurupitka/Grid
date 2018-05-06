@@ -1603,22 +1603,22 @@ function GridStatusAuras:ScanUnitAuras(event, unit, guid)
 
 		-- scan for debuffs
 		for index = 1, 40 do
-			local name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer = UnitAura(unit, index, "HARMFUL")
+			local name, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer = UnitAura(unit, index, "HARMFUL")
 			if not name then
 				break
 			end
 			if debuff_names[name] then
 				debuff_names_seen[name] = true
-				self:UnitGainedDebuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
+				self:UnitGainedDebuff(guid, class, name, nil, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
 			--[[
 			elseif isBossAura then
 				seenBossAura = true
-				self:UnitGainedBossDebuff(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
+				self:UnitGainedBossDebuff(guid, class, name, nil, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
 			]]
 			elseif debuff_types[debuffType] then
 				-- elseif so that a named debuff doesn't trigger the type status
 				debuff_types_seen[debuffType] = true
-				self:UnitGainedDebuffType(guid, class, name, rank, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
+				self:UnitGainedDebuffType(guid, class, name, nil, icon, count, debuffType, duration, expirationTime, casterUnit, canStealOrPurge, shouldConsolidate, spellID, canApply, isBossAura, isCastByPlayer)
 			end
 		end
 	end
