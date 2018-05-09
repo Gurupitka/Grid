@@ -165,11 +165,13 @@ function GridStatusStagger:UpdateAllUnits()
 	end
 end
 
+
+
 function GridStatusStagger:UpdateUnit(event, unitid)
 	local guid = UnitGUID(unitid)
 	if monks[guid] then
 		for i = 1, stagger_names_count do
-			local name, _, icon, _, _, _, _, _, _, _, spellID = UnitDebuff(unitid, stagger_names[i])
+			local name, icon, _, _, _, _, _, _, _, spellID = self.core:UnitAuraByName(unitid, stagger_names[i])
 			if spellID then
 				local severity = spellID_severity[spellID]
 				local settings = self.db.profile.alert_stagger

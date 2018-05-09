@@ -536,6 +536,21 @@ function GridStatus:SendStatusGained(guid, status, priority, range, color, text,
 	self:SendMessage("Grid_StatusGained", guid, status, priority, range, color, text, value, maxValue, texture, start, duration, count, texCoords)
 end
 
+function GridStatus:UnitAuraByName(unit, searchName, filter)
+	-- Helper function to accommodate changes in WoW 8.0:
+	-- UnitAura no longer accepts an aura name, so we have to scan all auras and check their names to find the one we want
+	-- UnitAura no longer returns a spell rank (arg2)
+	for i = 1, 40 do
+		local name, rank, texture, count, debuffType, duration, expirationTime, unitCaster, canStealOrPurge, nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, isCastByPlayer, nameplateShowAll, timeMod
+		name, texture, count, debuffType, duration, expirationTime, unitCaster, canStealOrPurge, nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, isCastByPlayer, nameplateShowAll, timeMod = UnitAura(unit, i, filter)
+		if name == searchName then
+			-- rank excluded in either case
+			return name, texture, count, debuffType, duration, expirationTime, unitCaster, canStealOrPurge, nameplateShowPersonal, spellId, canApplyAura, isBossDebuff, isCastByPlayer, nameplateShowAll, timeMod
+		end
+	end
+
+end
+
 function GridStatus:SendStatusLost(guid, status)
 	if not guid then return end
 
